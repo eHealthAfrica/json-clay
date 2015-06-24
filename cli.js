@@ -7,5 +7,5 @@ module.exports = function(model, argv) {
 
   var model = model.generate(attributes)
 
-  console.log(JSON.stringify(model), null, '  '))
+  console.log(JSON.stringify(model, null, '  '))
 }
