@@ -31,7 +31,22 @@ test('validate', function(t) {
   t.end()
 })
 
-test('validate with errors', function(t) {
+test('validate missing name', function(t) {
+  t.deepEqual(model.validate({
+    type: 'person',
+    version: '1.2.3'
+  }), [
+    {
+      code: 'OBJECT_MISSING_REQUIRED_PROPERTY',
+      message: 'Missing required property: name',
+      params: [ 'name' ],
+      path: '#/'
+    }
+  ], 'correct errors')
+  t.end()
+})
+
+test('validate invalid name', function(t) {
   t.deepEqual(model.validate({
     type: 'person',
     version: '1.2.3',

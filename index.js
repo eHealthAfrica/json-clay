@@ -38,6 +38,7 @@ var Model = module.exports = function(options) {
 
   this.schema = options.schema || baseSchema
   this.refs = options.refs || []
+  this.defaults = options.defaults || {}
 
   this.validator = new ZSchema()
 
@@ -77,5 +78,5 @@ Model.prototype.generate = function(attributes) {
 
   var data = jsf(this._originalSchema, this._originalRefs)
 
-  return merge(data, attributes)
+  return merge(data, this.defaults, attributes)
 }

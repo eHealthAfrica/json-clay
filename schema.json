@@ -14,7 +14,6 @@
       "pattern": "^[a-z]+(-[a-z]+)*$",
       "faker": "model.type"
     },
-
     "version": {
       "type": "string",
       "format": "semver"
