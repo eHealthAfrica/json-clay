@@ -1,0 +1,34 @@
+{
+  "name": "eha-model",
+  "version": "1.0.0",
+  "description": "eHealth Africa’s base model.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eHealthAfrica/eha-model.git"
+  },
+  "keywords": [
+    "eha",
+    "model"
+  ],
+  "author": "eHealth Africa (http://ehealthafrica.org/)",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/eHealthAfrica/eha-model/issues"
+  },
+  "homepage": "https://github.com/eHealthAfrica/eha-model#readme",
+  "devDependencies": {
+    "tap-spec": "^4.0.2",
+    "tape": "^4.0.0"
+  },
+  "dependencies": {
+    "json-schema-faker": "^0.1.12",
+    "lodash": "^3.9.3",
+    "minimist": "^1.1.1",
+    "semver": "^4.3.6",
+    "z-schema": "^3.12.0"
+  }
+}

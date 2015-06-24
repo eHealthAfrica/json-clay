@@ -1,0 +1,28 @@
+{
+  "id": "https://schema.ehealthafrica.org/1.0/base#",
+
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  
+  "title": "Base",
+  "description": "Base model defining type and version.",
+
+  "type": "object",
+
+  "properties": {
+    "type": {
+      "type": "string",
+      "pattern": "^[a-z]+(-[a-z]+)*$",
+      "faker": "model.type"
+    },
+
+    "version": {
+      "type": "string",
+      "format": "semver"
+    }
+  },
+
+  "required": [
+    "type",
+    "version"
+  ]
+}
