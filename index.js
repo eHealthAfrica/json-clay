@@ -3,7 +3,6 @@ var ZSchema = require('z-schema')
 var jsf = require('json-schema-faker')
 var assert = require('assert')
 var merge = require('lodash/object/merge')
-var cloneDeep = require('lodash/lang/cloneDeep')
 
 var baseSchema = require('./schema.json')
 
@@ -52,11 +51,11 @@ var Model = module.exports = function(options) {
   })
 
 
-  // Needed by json-schema-faker, which otherwise throws
-  // `RangeError: Maximum call stack size exceeded`
-  // because of problems with compiled schemas.
-  this._originalSchema = cloneDeep(this.schema)
-  this._originalRefs = cloneDeep(this.refs)
+  // to fix `RangeError: Maximum call stack size exceeded` bug:
+  // insert
+  // `if (key.slice(0, 2) === '__') return`
+  // above line 19 of
+  // node_modules/json-schema-faker/node_modules/deref/lib/util/clone-obj.js
 
 
   this.refs.forEach(function(ref) {
@@ -76,7 +75,7 @@ Model.prototype.validate = function(json) {
 Model.prototype.generate = function(attributes) {
   attributes = attributes || {}
 
-  var data = jsf(this._originalSchema, this._originalRefs)
+  var data = jsf(this.schema, this.refs)
 
   return merge(data, this.defaults, attributes)
 }

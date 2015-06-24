@@ -34,6 +34,7 @@ person.validate({
   type: 'person',
   version: '1.2.3'
 })
+// =>
 // [
 //   {
 //     code: 'OBJECT_MISSING_REQUIRED_PROPERTY',
@@ -46,6 +47,7 @@ person.validate({
 person.generate({
   version: '1.0.0',
 })
+// =>
 // {
 //   "type": "person",
 //   "version": "1.0.0"
@@ -57,6 +59,7 @@ person.generate({
 //   firstName: 'Audrey',
 //   lastName: 'Horne'
 // })
+// // =>
 // // [
 // //   {
 // //     version: '1.2.3'

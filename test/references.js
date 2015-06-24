@@ -122,8 +122,7 @@ test.skip('generate required properties', function(t) {
   t.end()
 })
 
-// `RangeError: Maximum call stack size exceeded`
-test.skip('generate required parent properties', function(t) {
+test('generate required parent properties', function(t) {
   var doc = model.generate()
   t.ok('createdAt' in doc, 'createdAt generated')
   t.end()
@@ -137,8 +136,7 @@ test.skip('generate required base properties', function(t) {
   t.end()
 })
 
-// `RangeError: Maximum call stack size exceeded`
-test.skip('generate with predefined attributes', function(t) {
+test('generate with predefined attributes', function(t) {
   var doc = model.generate({ createdAt: '2000-01-01T00:00:00.000Z' })
   t.equal(doc.createdAt, '2000-01-01T00:00:00.000Z', 'createdAt used')
   t.end()
