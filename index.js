@@ -3,6 +3,7 @@ var ZSchema = require('z-schema')
 var jsf = require('json-schema-faker')
 var assert = require('assert')
 var merge = require('lodash/object/merge')
+var cloneDeep = require('lodash/lang/cloneDeep')
 
 var baseSchema = require('./schema.json')
 
@@ -50,24 +51,22 @@ var Model = module.exports = function(options) {
     assert('id' in ref, 'Schema is missing id property')
   })
 
+  // validator operates on a cloned schema and ref to avoid
+  // `RangeError: Maximum call stack size exceeded`
+  // in generate
+  this._schema = cloneDeep(this.schema)
+  this._refs = cloneDeep(this.refs)
 
-  // to fix `RangeError: Maximum call stack size exceeded` bug:
-  // insert
-  // `if (key.slice(0, 2) === '__') return`
-  // above line 19 of
-  // node_modules/json-schema-faker/node_modules/deref/lib/util/clone-obj.js
-
-
-  this.refs.forEach(function(ref) {
+  this._refs.forEach(function(ref) {
     this.validator.setRemoteReference(ref.id, ref)
   }.bind(this))
 
-  var valid = this.validator.validateSchema(this.refs)
+  var valid = this.validator.validateSchema(this._refs)
   assert(valid, 'Schema validation failed')
 }
 
 Model.prototype.validate = function(json) {
-  this.validator.validate(json, this.schema)
+  this.validator.validate(json, this._schema)
 
   return this.validator.getLastErrors()
 }
