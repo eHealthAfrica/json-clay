@@ -34,7 +34,7 @@ test('ensure reference has id', function(t) {
   t.end()
 })
 
-test('validate schema', function(t) {
+test.skip('validate schema', function(t) {
   t.throws(function() {
     new Model({
       schema: {
@@ -50,7 +50,7 @@ test('validate schema', function(t) {
   t.end()
 })
 
-test('validate references', function(t) {
+test.skip('validate references', function(t) {
   t.throws(function() {
     new Model({
       refs: [

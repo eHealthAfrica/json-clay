@@ -7,28 +7,22 @@ test('validate', function(t) {
   t.equal(model.validate({
     type: 'my-model',
     version: '1.2.3'
-  }), undefined, 'no errors')
+  }), null, 'no errors')
   t.end()
 })
 
 test('validate with errors', function(t) {
   t.deepEqual(model.validate({
-  }), [
-    {
-      code: 'OBJECT_MISSING_REQUIRED_PROPERTY',
-      description: 'Base model defining type and version.',
-      message: 'Missing required property: version',
-      params: [ 'version' ],
-      path: '#/'
-    },
-    {
-      code: 'OBJECT_MISSING_REQUIRED_PROPERTY',
-      description: 'Base model defining type and version.',
-      message: 'Missing required property: type',
-      params: [ 'type' ],
-      path: '#/'
+  }), {
+    validation: {
+      type: {
+        required: true
+      },
+      version: {
+        required: true
+      }
     }
-  ], 'correct errors')
+  }, 'correct errors')
   t.end()
 })
 

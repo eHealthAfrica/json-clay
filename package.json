@@ -4,7 +4,8 @@
   "description": "eHealth Africa’s base model.",
   "main": "index.js",
   "scripts": {
-    "test": "tape test/*.js | tap-spec"
+    "test": "tape test/*.js | tap-spec",
+    "build": "mkdir dist && browserify index.js -s Model > dist/eha-model.js"
   },
   "repository": {
     "type": "git",
@@ -21,14 +22,20 @@
   },
   "homepage": "https://github.com/eHealthAfrica/eha-model#readme",
   "devDependencies": {
+    "browserify": "^10.2.4",
+    "couchdb-push": "^2.0.0",
+    "nano": "^6.1.4",
     "tap-spec": "^4.0.2",
     "tape": "^4.0.0"
   },
   "dependencies": {
+    "jjv": "^1.0.2",
     "json-schema-faker": "^0.1.13",
     "lodash": "^3.9.3",
     "minimist": "^1.1.1",
-    "semver": "^4.3.6",
-    "z-schema": "^3.12.0"
+    "semver": "^4.3.6"
+  },
+  "browser": {
+    "./generate": false
   }
 }

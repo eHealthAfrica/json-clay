@@ -35,14 +35,14 @@ person.validate({
   version: '1.2.3'
 })
 // =>
-// [
-//   {
-//     code: 'OBJECT_MISSING_REQUIRED_PROPERTY',
-//     message: 'Missing required property: name',
-//     params: [ 'name' ],
-//     path: '#/'
+// {
+//   validation: {
+//     name: {
+//       required: true
+//     }
 //   }
-// ]
+// }
+
 
 person.generate({
   version: '1.0.0',
@@ -134,6 +134,15 @@ var person = new Model()
 
 cli(person, process.argv.slice(2))
 ```
+
+
+## Browserify Build
+```sh
+npm run build
+```
+
+Creates a browserified release in `dist/eha-model.js`.
+This build does *not* include the generator.
 
 
 ## Tests
