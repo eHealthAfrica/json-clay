@@ -1,6 +1,9 @@
 # JSON Clay
 JSON schema validation, fake data generation and migrations.
 
+[![Build
+Status](https://travis-ci.org/eHealthAfrica/json-clay.svg)](https://travis-ci.org/eHealthAfrica/json-clay)
+
 
 ## Usage
 ```js
