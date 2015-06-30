@@ -1,7 +1,6 @@
 function(doc) {
-  var Model = require('lib/eha-model')
-  var model = new Model()
-
+  var Clay = require('lib/json-clay')
+  var model = new Clay()
   var errors = model.validate(doc)
 
   if (errors) {

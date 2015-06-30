@@ -4,7 +4,7 @@ var push = require('couchdb-push')
 var path = require('path')
 
 var url = process.env.COUCH || 'http://localhost:5984'
-var dbname = 'test-eha-model'
+var dbname = 'test-json-clay'
 var couch = nano(url)
 var db = couch.use(dbname)
 var source = path.join(__dirname, 'fixtures')

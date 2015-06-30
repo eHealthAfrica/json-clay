@@ -1,12 +1,12 @@
-# eha-model
-eHealth Africa’s base model.
+# JSON Clay
+JSON schema validation, fake data generation and migrations.
 
 
 ## Usage
 ```js
-var Model = require('eha-model')
+var Clay = require('json-clay')
 
-var person = new Model({
+var person = new Clay({
   schema: {
     id: 'https://schema.ehealthafrica.org/1.0/person#',
     $schema: 'http://json-schema.org/draft-04/schema#',
@@ -69,57 +69,49 @@ person.generate({
 ```
 
 
-## Constructor: `new Model([options])`
-Create a model.
+## Constructor: `new Clay([options])`
+Create a new JSON schema clay.
 
-* `options.schema` - JSON schema of the model. Default is the [base schema](schema.json).
+* `options.schema` - JSON schema of the clay. Default is the [base schema](schema.json).
 * `options.refs` - Array of referenced schemas.
 * `options.defaults` - Default properties used for generating fake data.
 
 
-## Validation: `model.validate(json)`
+## Validation: `clay.validate(json)`
 Validate the `attribjson` against the schema.
 Returns `undefined` if the data is valid, otherwise an array of errors.
 
 
 ## Validation Errors
-A typical error array looks like this:
+A typical error object looks like this:
 
 ```js
-[
-  {
-    code: 'OBJECT_MISSING_REQUIRED_PROPERTY',
-    description: 'Base model defining type and version.',
-    message: 'Missing required property: version',
-    params: [ 'version' ],
-    path: '#/'
-  },
-  {
-    code: 'MIN_LENGTH',
-    message: 'String is too short (0 chars), minimum 1',
-    params: [ 0, 1 ],
-    path: '#/name'
+{
+  validation: {
+    name: {
+      required: true
+    }
   }
-]
+}
 ```
 
 
-## Generate Fake Data: `model.generate([attributes])`
+## Generate Fake Data: `clay.generate([attributes])`
 Use this method if you want to get fake data. Utilizes
 [json-schema-faker](https://github.com/pateketrueke/json-schema-faker).
 If an `attributes` object is provided, its properties will be used instead of
 faked values.
 
 
-## `Model.schema`
+## `Clay.schema`
 Holds the `schema`.
 
 
-## `Model.refs`
+## `Clay.refs`
 Holds the `refs`.
 
 
-## `Model.defaults`
+## `Clay.defaults`
 Holds the `defaults`.
 
 
@@ -127,10 +119,10 @@ Holds the `defaults`.
 Use it to create a simple command line utility which generates fake data:
 
 ```js
-var Model = require('eha-model')
-var cli = require('eha-model/cli')
+var Clay = require('json-clay')
+var cli = require('json-clay/cli')
 
-var person = new Model()
+var person = new Clay()
 
 cli(person, process.argv.slice(2))
 ```
@@ -141,8 +133,8 @@ cli(person, process.argv.slice(2))
 npm run build
 ```
 
-Creates a browserified release in `dist/eha-model.js`.
-This build does *not* include the generator.
+Creates a browserified release in `dist/json-clay.js`.
+This build does *not* include the fake data generator.
 
 
 ## Tests

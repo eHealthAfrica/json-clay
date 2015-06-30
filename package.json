@@ -1,15 +1,15 @@
 {
-  "name": "eha-model",
+  "name": "json-clay",
   "version": "1.0.1",
-  "description": "eHealth Africa’s base model.",
+  "description": "JSON schema validation, fake data generation and migrations.",
   "main": "index.js",
   "scripts": {
     "test": "tape test/*.js | tap-spec",
-    "build": "mkdir dist && browserify index.js -s Model > dist/eha-model.js"
+    "build": "mkdir -p dist && browserify index.js -s Model > dist/json-clay.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eHealthAfrica/eha-model.git"
+    "url": "git+https://github.com/eHealthAfrica/json-clay.git"
   },
   "keywords": [
     "eha",
@@ -18,9 +18,9 @@
   "author": "eHealth Africa (http://ehealthafrica.org/)",
   "license": "Apache 2.0",
   "bugs": {
-    "url": "https://github.com/eHealthAfrica/eha-model/issues"
+    "url": "https://github.com/eHealthAfrica/json-clay/issues"
   },
-  "homepage": "https://github.com/eHealthAfrica/eha-model#readme",
+  "homepage": "https://github.com/eHealthAfrica/json-clay#readme",
   "devDependencies": {
     "browserify": "^10.2.4",
     "couchdb-push": "^2.0.0",

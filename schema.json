@@ -12,7 +12,7 @@
     "type": {
       "type": "string",
       "pattern": "^[a-z]+(-[a-z]+)*$",
-      "faker": "model.type"
+      "faker": "clay.type"
     },
     "version": {
       "type": "string",

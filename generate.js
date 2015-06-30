@@ -6,7 +6,7 @@ jsf.formats('semver', function(gen) {
   return gen.randexp('^\\d\\.\\d\\.\\d{1,2}$')
 })
 jsf.extend('faker', function(faker) {
-  faker.model = {
+  faker.clay = {
     type: function() {
       var length = faker.helpers.randomize([1,1,1,2,2,3])
       var type = []

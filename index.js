@@ -4,7 +4,9 @@ var assert = require('assert')
 
 var generate = require('./generate')
 
-var baseSchema = require('./schema.json')
+var schemas = {
+  base: require('./schema.json')
+}
 
 
 var formats = {
@@ -14,17 +16,17 @@ var formats = {
 }
 
 
-var Model = module.exports = function(options) {
+var Clay = module.exports = function(options) {
   options = options || {}
 
-  this.schema = options.schema || baseSchema
+  this.schema = options.schema || schemas.base
   this.refs = options.refs || []
   this.defaults = options.defaults || {}
 
   this.validator = new jjv()
 
-  this.refs.push(baseSchema)
-  if (this.schema.id !== baseSchema.id) {
+  this.refs.push(schemas.base)
+  if (this.schema.id !== schemas.base.id) {
     this.refs.push(this.schema)
   }
 
@@ -41,11 +43,15 @@ var Model = module.exports = function(options) {
   }
 }
 
-Model.prototype.validate = function(json) {
+Clay.prototype.validate = function(json) {
   return this.validator.validate(this.schema, json)
 }
 
 if (typeof generate === 'function') {
-  Model.prototype.generate = generate
+  Clay.prototype.generate = generate
+} else {
+  Clay.prototype.generate = function() {
+    throw('`clay.generate` is not included in this build of json-clay.')
+  }
 }
 
