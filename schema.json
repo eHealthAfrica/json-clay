@@ -10,11 +10,17 @@
 
   "properties": {
     "type": {
+      "title": "Type",
+      "description": "Type of the document, normally the model name, dashed.",
+      
       "type": "string",
       "pattern": "^[a-z]+(-[a-z]+)*$",
       "faker": "clay.type"
     },
     "version": {
+      "title": "Version",
+      "description": "Version of the schema model this document is based on.",
+      
       "type": "string",
       "format": "semver"
     }
