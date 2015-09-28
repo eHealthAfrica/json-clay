@@ -1,22 +1,22 @@
 {
   "name": "json-clay",
-  "version": "1.0.2",
   "description": "JSON schema validation, fake data generation and migrations.",
   "main": "index.js",
   "scripts": {
     "test": "tape test/*.js | tap-spec",
-    "build": "mkdir -p dist && browserify index.js -s Model > dist/json-clay.js"
+    "build": "mkdir -p dist && browserify index.js -s Model > dist/json-clay.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eHealthAfrica/json-clay.git"
+    "url": "https://github.com/eHealthAfrica/json-clay.git"
   },
   "keywords": [
     "eha",
     "model"
   ],
   "author": "eHealth Africa (http://ehealthafrica.org/)",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/eHealthAfrica/json-clay/issues"
   },
@@ -26,7 +26,8 @@
     "couchdb-push": "^2.0.0",
     "nano": "^6.1.4",
     "tap-spec": "^4.0.2",
-    "tape": "^4.0.0"
+    "tape": "^4.0.0",
+    "semantic-release": "^4.3.5"
   },
   "dependencies": {
     "jjv": "^1.0.2",
