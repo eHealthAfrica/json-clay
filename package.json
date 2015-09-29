@@ -23,13 +23,13 @@
   "homepage": "https://github.com/eHealthAfrica/json-clay#readme",
   "devDependencies": {
     "browserify": "^10.2.4",
-    "couchdb-push": "^2.0.0",
     "nano": "^6.1.4",
     "tap-spec": "^4.0.2",
     "tape": "^4.0.0",
     "semantic-release": "^4.3.5"
   },
   "dependencies": {
+    "couchdb-push": "^2.2.1",
     "jjv": "^1.0.2",
     "json-schema-faker": "^0.1.13",
     "lodash": "^3.9.3",
