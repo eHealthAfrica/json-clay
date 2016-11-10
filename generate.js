@@ -20,11 +20,29 @@ jsf.extend('faker', function(faker) {
   return faker
 })
 
+function getAllProperties(schema) {
+  if (!schema.properties) {
+    return
+  }
+  var required = Object.keys(schema.properties || {})
+  if (!required.length) {
+    return
+  }
+  return {
+    required
+  }
+}
 
-module.exports = function(attributes) {
+module.exports = function(attributes, opts) {
   attributes = attributes || {}
+  var schema = this.schema
 
-  var data = jsf(this.schema, this.refs)
+  if (opts && opts.all) {
+    // Until https://github.com/json-schema-faker/json-schema-faker/issues/81
+    schema = Object.assign({}, schema, getAllProperties(schema))
+  }
+
+  var data = jsf(schema, this.refs)
 
   return merge(data, this.defaults, attributes)
 }

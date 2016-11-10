@@ -23,6 +23,9 @@ var person = new Clay({
       name: {
         type: 'string',
         minLength: 1
+      },
+      age: {
+        type: 'number'
       }
     },
     required: ['name']
@@ -31,7 +34,7 @@ var person = new Clay({
     type: 'person',
     version: '1.2.3'
   }
-}) 
+})
 
 person.validate({
   type: 'person',
@@ -99,12 +102,16 @@ A typical error object looks like this:
 ```
 
 
-## Generate Fake Data: `clay.generate([attributes])`
+## Generate Fake Data: `clay.generate([attributes][, opts])`
 Use this method if you want to get fake data. Utilizes
 [json-schema-faker](https://github.com/pateketrueke/json-schema-faker).
+
 If an `attributes` object is provided, its properties will be used instead of
 faked values.
 
+Passing `opts` modifies json-schema-faker behaviour:
+
+* `opts.all`: generate fake data for all of the schema's properties, not just required properties.
 
 ## `Clay.schema`
 Holds the `schema`.
@@ -130,6 +137,38 @@ var person = new Clay()
 cli(person, process.argv.slice(2))
 ```
 
+Shell usage:
+
+```js
+./cli.js
+{
+  "type": "person",
+  "version": "1.2.3"
+}
+```
+
+Arguments will be added as attributes:
+
+```shell
+./cli.js --name Matt
+{
+  "type": "person",
+  "version": "1.2.3",
+  "name": "Matt"
+}
+```
+
+Arguments after `--` will be passed as options to `generate`:
+
+```shell
+./cli.js --name Matt -- --all
+{
+  "type": "person",
+  "version": "1.2.3",
+  "name": "Matt",
+  "age": 27
+}
+```
 
 ## Browserify Build
 ```sh
