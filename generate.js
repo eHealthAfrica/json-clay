@@ -1,5 +1,4 @@
 var jsf = require('json-schema-faker')
-var merge = require('lodash/object/merge')
 
 
 jsf.formats('semver', function(gen) {
@@ -26,5 +25,5 @@ module.exports = function(attributes) {
 
   var data = jsf(this.schema, this.refs)
 
-  return merge(data, this.defaults, attributes)
+  return Object.assign(data, this.defaults, attributes)
 }
