@@ -102,7 +102,7 @@ A typical error object looks like this:
 ```
 
 
-## Generate Fake Data: `clay.generate([attributes][, opts])`
+## Generate Fake Data: `clay.generate([attributes[, opts]])`
 Use this method if you want to get fake data. Utilizes
 [json-schema-faker](https://github.com/pateketrueke/json-schema-faker).
 
