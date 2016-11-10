@@ -7,13 +7,14 @@ jsf.formats('semver', function(gen) {
 })
 jsf.extend('faker', function(faker) {
   faker.clay = {
-    type: function() {
+    type: function(prefix) {
+      prefix = prefix || ''
       var length = faker.helpers.randomize([1,1,1,2,2,3])
       var type = []
       for (var i = 0; i < length; i++) {
         type.push(faker.helpers.slugify(faker.hacker.noun()))
       }
-      return type.join('-')
+      return prefix + type.join('-')
     }
   }
 
